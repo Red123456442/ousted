@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page 2 - Dossiers</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fffbf0;
+    margin:0;
+    text-align:center;
+}
+
+h1 {
+    color: #1a237e;
+    margin-top: 30px;
+}
+
+/* Carrousel central */
+.carousel {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    overflow: hidden;
+    border-radius: 10px;
+    border: 2px solid #1a237e;
+    position: relative;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.carousel-item {
+    min-width: 100%;
+    cursor: pointer;
+}
+
+.carousel-item img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Encadrés des niveaux */
+.levels {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    gap: 20px;
+}
+
+.level {
+    width: 200px;
+    height: 120px;
+    background-color: #1a237e;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.level:hover {
+    transform: scale(1.05);
+    background-color: #3949ab;
+}
+</style>
+</head>
+<body>
+
+<h1>Bienvenue sur la Page 2</h1>
+
+<!-- Carrousel d'images -->
+<div class="carousel">
+    <div class="carousel-track">
+        <div class="carousel-item" onclick="window.location.href='dossier1.html'">
+            <img src="dossier1.jpg" alt="Dossier 1">
+        </div>
+        <div class="carousel-item" onclick="window.location.href='dossier2.html'">
+            <img src="dossier2.jpg" alt="Dossier 2">
+        </div>
+        <div class="carousel-item" onclick="window.location.href='dossier3.html'">
+            <img src="dossier3.jpg" alt="Dossier 3">
+        </div>
+    </div>
+</div>
+
+<!-- Encadrés niveaux -->
+<div class="levels">
+    <div class="level" onclick="window.location.href='niveau1.html'">Niveau 1 : Kiyan</div>
+    <div class="level" onclick="window.location.href='niveau2.html'">Niveau 2 : Janna & Aymen</div>
+    <div class="level" onclick="window.location.href='niveau3.html'">Niveau 3 : Hafssa, Kenza & Nour</div>
+</div>
+
+<script>
+// Carrousel automatique
+const track = document.querySelector('.carousel-track');
+let index = 0;
+
+function nextSlide() {
+    index++;
+    if (index >= track.children.length) index = 0;
+    track.style.transform = `translateX(-${index * 100}%)`;
+}
+
+setInterval(nextSlide, 3000); // Change d'image toutes les 3 secondes
+</script>
+
+</body>
+</html>
+
+
