@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Page 2 - Dossiers</title>
+
 <style>
+/* ----- STYLE GÉNÉRAL ----- */
 body {
     font-family: Arial, sans-serif;
     background-color: #fffbf0;
@@ -17,7 +19,7 @@ h1 {
     margin-top: 30px;
 }
 
-/* Carrousel central */
+/* ----- CARROUSEL ----- */
 .carousel {
     width: 80%;
     max-width: 800px;
@@ -43,62 +45,91 @@ h1 {
     border-radius: 10px;
 }
 
-/* Encadrés des niveaux */
+/* ----- BLOCS NIVEAUX HORIZONTAUX ----- */
 .levels {
     display: flex;
-    justify-content: center;
+    justify-content: center; /* aligne les niveaux horizontalement */
     margin-top: 30px;
-    gap: 20px;
+    gap: 20px; /* espace entre les niveaux */
+    flex-wrap: wrap; /* s’adapte aux écrans plus petits */
 }
 
 .level {
     width: 200px;
-    height: 120px;
-    background-color: #1a237e;
+    height: auto;
+    background-color: #5c6bc0; /* bleu clair */
     color: #fff;
     display: flex;
+    flex-direction: column; /* empile le titre et le nom verticalement */
     align-items: center;
     justify-content: center;
     border-radius: 10px;
     font-weight: bold;
     cursor: pointer;
-    transition: transform 0.3s, background-color 0.3s;
+    transition: 0.3s;
+    padding: 10px;
+    text-align: center;
 }
 
 .level:hover {
     transform: scale(1.05);
-    background-color: #3949ab;
+    background-color: #7986cb;
+}
+
+.level-name {
+    font-size: 0.9em;
+    margin-top: 8px;
+    color: #fff;
 }
 </style>
 </head>
+
 <body>
 
 <h1>Bienvenue sur la Page 2</h1>
 
-<!-- Carrousel d'images -->
+<!-- ----- CARROUSEL ----- -->
 <div class="carousel">
     <div class="carousel-track">
-        <div class="carousel-item" onclick="window.location.href='pagesmeslettres.html'">
+
+        <!-- DOSSIER 1 -->
+        <div class="carousel-item" onclick="window.location.href='pagemoncoran.html'">
             <img src="dossier1.jpg" alt="Dossier 1">
         </div>
-        <div class="carousel-item" onclick="window.location.href='dossier2.html'">
+
+        <!-- DOSSIER 2 -->
+        <div class="carousel-item" onclick="window.location.href='pagemeslettres.html'">
             <img src="dossier2.jpg" alt="Dossier 2">
         </div>
-        <div class="carousel-item" onclick="window.location.href='dossier3.html'">
+
+        <!-- DOSSIER 3 -->
+        <div class="carousel-item" onclick="window.location.href='pagemescours.html'">
             <img src="dossier3.jpg" alt="Dossier 3">
         </div>
+
     </div>
 </div>
 
-<!-- Encadrés niveaux -->
+<!-- ----- BLOCS NIVEAUX HORIZONTAUX ----- -->
 <div class="levels">
-    <div class="level" onclick="window.location.href='niveau1.html'">Niveau 1 : Kiyan</div>
-    <div class="level" onclick="window.location.href='niveau2.html'">Niveau 2 : Janna & Aymen</div>
-    <div class="level" onclick="window.location.href='niveau3.html'">Niveau 3 : Hafssa, Kenza & Nour</div>
+    <div class="level" onclick="window.location.href='niveau1.html'">
+        Niveau 1
+        <div class="level-name">Kiyan</div>
+    </div>
+
+    <div class="level" onclick="window.location.href='niveau2.html'">
+        Niveau 2
+        <div class="level-name">Janna & Aymen</div>
+    </div>
+
+    <div class="level" onclick="window.location.href='niveau3.html'">
+        Niveau 3
+        <div class="level-name">Hafssa, Kenza & Nour</div>
+    </div>
 </div>
 
 <script>
-// Carrousel automatique
+/* ----- CARROUSEL AUTOMATIQUE ----- */
 const track = document.querySelector('.carousel-track');
 let index = 0;
 
@@ -108,11 +139,15 @@ function nextSlide() {
     track.style.transform = `translateX(-${index * 100}%)`;
 }
 
-setInterval(nextSlide, 3000); // Change d'image toutes les 3 secondes
+setInterval(nextSlide, 3000); // change d’image toutes les 3 secondes
 </script>
 
 </body>
 </html>
+
+
+
+
 
 
 
