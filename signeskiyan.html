@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Les Signes – Niveau 1 Kiyan</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #fff8e7;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #1a237e;
+}
+
+.letters-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    direction: rtl;
+    margin-bottom: 30px;
+}
+
+.letter-box {
+    width: 120px;
+    height: 120px;
+    font-size: 70px;
+    background: #5c6bc0;
+    color: white;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+    user-select: none;
+}
+
+.letter-box:hover {
+    background: #7986cb;
+    transform: scale(1.1);
+}
+
+.signs-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.sign-box {
+    width: 100px;
+    height: 100px;
+    background: #ffb74d;
+    color: black;
+    font-size: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    user-select: none;
+}
+
+.sign-box:hover {
+    background: #ffcc80;
+    transform: scale(1.1);
+}
+</style>
+</head>
+<body>
+
+<h1>Les Signes – Niveau 1 (Kiyan)</h1>
+
+<h2>1. Choisis une lettre</h2>
+<div class="letters-container">
+    <div class="letter-box" data-letter="a">ا</div>
+    <div class="letter-box" data-letter="ba">ب</div>
+    <div class="letter-box" data-letter="ta">ت</div>
+    <div class="letter-box" data-letter="tha">ث</div>
+    <div class="letter-box" data-letter="jeem">ج</div>
+    <div class="letter-box" data-letter="ha">ح</div>
+    <div class="letter-box" data-letter="kha">خ</div>
+</div>
+
+<h2>2. Choisis un signe</h2>
+<div class="signs-container">
+    <div class="sign-box" data-sign="fatha">اَ</div>
+    <div class="sign-box" data-sign="damma">اُ</div>
+    <div class="sign-box" data-sign="kasra">اِ</div>
+</div>
+
+<script>
+let selectedLetter = null;
+
+// Cliquer sur une lettre
+document.querySelectorAll(".letter-box").forEach(letter => {
+    letter.addEventListener("click", () => {
+        selectedLetter = letter.getAttribute("data-letter");
+
+        document.querySelectorAll(".letter-box").forEach(l => l.style.border = "none");
+        letter.style.border = "3px solid #ff4d6d";
+        letter.style.borderRadius = "15px";
+    });
+});
+
+// Cliquer sur un signe
+document.querySelectorAll(".sign-box").forEach(sign => {
+    sign.addEventListener("click", () => {
+        if (!selectedLetter) return;
+
+        const signType = sign.getAttribute("data-sign");
+        const soundPath = `sounds/${selectedLetter}_${signType}.m4a`;
+
+        const audio = new Audio(soundPath);
+        audio.play();
+    });
+});
+</script>
+
+</body>
+</html>
+
+
+
+

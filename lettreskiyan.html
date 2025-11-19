@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lettres – Niveau 1 Kiyan</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #fff8e7;
+        text-align: center;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        color: #1a237e;
+        margin-bottom: 20px;
+    }
+
+    .letters-container {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        flex-wrap: wrap;
+        direction: rtl; /* affichage de droite à gauche */
+    }
+
+    .letter-box {
+        width: 120px;
+        height: 120px;
+        font-size: 70px;
+        background: #5c6bc0;
+        color: white;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: 0.3s;
+        user-select: none;
+    }
+
+    .letter-box:hover {
+        background: #7986cb;
+        transform: scale(1.1);
+    }
+</style>
+</head>
+
+<body>
+
+<h1>Lettres – Niveau 1 (Kiyan)</h1>
+
+<div class="letters-container">
+
+    <div class="letter-box" data-sound="sounds/alif.m4a" onclick="location.href='alifkiyan.html'">ا</div>
+
+    <div class="letter-box" data-sound="sounds/ba.m4a" onclick="location.href='baikiyan.html'">ب</div>
+
+    <div class="letter-box" data-sound="sounds/ta.m4a" onclick="location.href='takiyan.html'">ت</div>
+
+    <div class="letter-box" data-sound="sounds/tha.m4a" onclick="location.href='thakiyan.html'">ث</div>
+
+    <div class="letter-box" data-sound="sounds/jeem.m4a" onclick="location.href='jeemkiyan.html'">ج</div>
+
+    <div class="letter-box" data-sound="sounds/ha.m4a" onclick="location.href='hakiyan.html'">ح</div>
+
+    <div class="letter-box" data-sound="sounds/kha.m4a" onclick="location.href='khakiyan.html'">خ</div>
+
+</div>
+
+<script>
+    // Lecture du son au clic
+    const letters = document.querySelectorAll('.letter-box');
+
+    letters.forEach(letter => {
+        letter.addEventListener('click', () => {
+            const audioSrc = letter.getAttribute('data-sound');
+            const audio = new Audio(audioSrc);
+            audio.play();
+        });
+    });
+</script>
+
+</body>
+</html>
+

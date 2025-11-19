@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeu Lettres et Signes – Kiyan</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #fff8e7;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 { color: #1a237e; }
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    border-radius: 10px;
+    background-color: #5c6bc0;
+    color: white;
+    transition: 0.3s;
+}
+button:hover { background-color: #7986cb; }
+
+#letters-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.letter-box {
+    width: 80px;
+    height: 80px;
+    font-size: 40px;
+    background: #5c6bc0;
+    color: white;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+    user-select: none;
+}
+
+.letter-box:hover { background: #7986cb; transform: scale(1.1); }
+
+.correct { background-color: #4caf50 !important; }
+.wrong { background-color: #f44336 !important; }
+
+#score { font-size: 20px; margin-top: 20px; color: #1a237e; }
+</style>
+</head>
+<body>
+
+<h1>Écoute et devine la lettre + signe</h1>
+<div id="score">Score : 0</div>
+<button id="play-sound">Jouer un son</button>
+
+<div id="letters-container"></div>
+
+<script>
+// Lettres et signes
+const letters = ['a','ba','ta','tha','jeem','ha','kha'];
+const lettersDisplay = ['ا','ب','ت','ث','ج','ح','خ'];
+const signs = ['fatha','damma','kasra'];
+const signsDisplay = ['َ','ُ','ِ'];
+
+// Score
+let score = 0;
+let currentLetter = null;
+let currentSign = null;
+
+// Créer toutes les combinaisons lettre+signe
+const allCombos = [];
+letters.forEach((l, i) => {
+    signs.forEach((s, j) => {
+        allCombos.push({letter: l, display: lettersDisplay[i]+signsDisplay[j], sign: s});
+    });
+});
+
+// Afficher toutes les combinaisons
+const container = document.getElementById('letters-container');
+allCombos.forEach(combo => {
+    const div = document.createElement('div');
+    div.className = 'letter-box';
+    div.textContent = combo.display;
+    div.dataset.letter = combo.letter;
+    div.dataset.sign = combo.sign;
+    div.addEventListener('click', () => checkAnswer(combo));
+    container.appendChild(div);
+});
+
+// Bouton jouer le son
+document.getElementById('play-sound').addEventListener('click', () => {
+    const randIndex = Math.floor(Math.random()*allCombos.length);
+    currentLetter = allCombos[randIndex].letter;
+    currentSign = allCombos[randIndex].sign;
+    const audio = new Audio(`sounds/${currentLetter}_${currentSign}.m4a`);
+    audio.play();
+});
+
+// Vérifier réponse
+function checkAnswer(combo) {
+    // Retirer anciennes couleurs
+    document.querySelectorAll('.letter-box').forEach(b => b.classList.remove('correct','wrong'));
+    if(combo.letter === currentLetter && combo.sign === currentSign){
+        score++;
+        document.getElementById('score').textContent = 'Score : ' + score;
+        event.target.classList.add('correct');
+    } else {
+        event.target.classList.add('wrong');
+    }
+}
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+

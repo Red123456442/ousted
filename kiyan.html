@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Niveau 1 – Kiyan</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fffbf0;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+h1 {
+    color: #1a237e;
+    margin-top: 30px;
+}
+
+/* Conteneur des sous-dossiers */
+.subfolders {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 50px;
+}
+
+/* Style de chaque sous-dossier */
+.subfolder {
+    width: 200px;
+    height: 120px;
+    background-color: #5c6bc0;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+    padding: 10px;
+    text-align: center;
+}
+
+.subfolder:hover {
+    transform: scale(1.05);
+    background-color: #7986cb;
+}
+
+.subfolder span {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #fff;
+}
+</style>
+</head>
+<body>
+
+<h1>Niveau 1 – Kiyan</h1>
+
+<div class="subfolders">
+    <div class="subfolder" onclick="window.location.href='lettreskiyan.html'">
+        Lettres
+        <span>Découvrir les lettres</span>
+    </div>
+    <div class="subfolder" onclick="window.location.href='signeskiyan.html'">
+        Signes
+        <span>Lettres + signes</span>
+    </div>
+    <div class="subfolder" onclick="window.location.href='jeuxkiyan.html'">
+        Jeux
+        <span>Jeux interactifs</span>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
