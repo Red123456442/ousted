@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lettres – Janna & Aymen</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(120deg, #ffe6f0, #e0f7ff);
+    margin: 0;
+    padding: 20px;
+    text-align: center;
+}
+
+h1 {
+    color: #ff4d6d;
+    font-size: 2em;
+    margin-top: 10px;
+    text-shadow: 1px 1px #fff;
+}
+
+.line {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    direction: rtl; /* lettres de droite à gauche */
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.letter {
+    font-size: 50px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
+    user-select: none;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.letter:hover {
+    background-color: #ffe0b3;
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.3);
+}
+
+.letter.active {
+    transform: translateY(-15px) scale(1.2);
+    background-color: #ffd1dc;
+    box-shadow: 6px 6px 15px rgba(0,0,0,0.4);
+}
+</style>
+</head>
+<body>
+
+<h1>Lettres – Niveau 2</h1>
+
+<!-- ---------------- ALPHABET COMPLET ---------------- -->
+
+<!-- Ligne 1 -->
+<div class="line">
+    <div class="letter" data-sound="sounds/a_fatha.m4a">اَ</div>
+    <div class="letter" data-sound="sounds/ba_fatha.m4a">بَ</div>
+    <div class="letter" data-sound="sounds/ta_fatha.m4a">تَ</div>
+    <div class="letter" data-sound="sounds/tha_fatha.m4a">ثَ</div>
+    <div class="letter" data-sound="sounds/jeem_fatha.m4a">جَ</div>
+    <div class="letter" data-sound="sounds/ha_fatha.m4a">حَ</div>
+    <div class="letter" data-sound="sounds/kha_fatha.m4a">خَ</div>
+    <div class="letter" data-sound="sounds/dal_fatha.m4a">دَ</div>
+    <div class="letter" data-sound="sounds/dhal_fatha.m4a">ذَ</div>
+</div>
+
+<!-- Ligne 2 -->
+<div class="line">
+    <div class="letter" data-sound="sounds/a_kasra.m4a">اِ</div>
+    <div class="letter" data-sound="sounds/ba_kasra.m4a">بِ</div>
+    <div class="letter" data-sound="sounds/ta_kasra.m4a">تِ</div>
+    <div class="letter" data-sound="sounds/tha_kasra.m4a">ثِ</div>
+    <div class="letter" data-sound="sounds/jeem_kasra.m4a">جِ</div>
+    <div class="letter" data-sound="sounds/ha_kasra.m4a">حِ</div>
+    <div class="letter" data-sound="sounds/kha_kasra.m4a">خِ</div>
+    <div class="letter" data-sound="sounds/dal_kasra.m4a">دِ</div>
+    <div class="letter" data-sound="sounds/dhal_kasra.m4a">ذِ</div>
+</div>
+
+<!-- Ligne 3 -->
+<div class="line">
+    <div class="letter" data-sound="sounds/a_damma.m4a">اُ</div>
+    <div class="letter" data-sound="sounds/ba_damma.m4a">بُ</div>
+    <div class="letter" data-sound="sounds/ta_damma.m4a">تُ</div>
+    <div class="letter" data-sound="sounds/tha_damma.m4a">ثُ</div>
+    <div class="letter" data-sound="sounds/jeem_damma.m4a">جُ</div>
+    <div class="letter" data-sound="sounds/ha_damma.m4a">حُ</div>
+    <div class="letter" data-sound="sounds/kha_damma.m4a">خُ</div>
+    <div class="letter" data-sound="sounds/dal_damma.m4a">دُ</div>
+    <div class="letter" data-sound="sounds/dhal_damma.m4a">ذُ</div>
+</div>
+
+<!-- Ligne 4 -->
+<div class="line">
+    <div class="letter" data-sound="sounds/ra_fatha.m4a">رَ</div>
+    <div class="letter" data-sound="sounds/zay_fatha.m4a">زَ</div>
+    <div class="letter" data-sound="sounds/sin_fatha.m4a">سَ</div>
+    <div class="letter" data-sound="sounds/shin_fatha.m4a">شَ</div>
+    <div class="letter" data-sound="sounds/sad_fatha.m4a">صَ</div>
+    <div class="letter" data-sound="sounds/dad_fatha.m4a">ضَ</div>
+    <div class="letter" data-sound="sounds/ta2_fatha.m4a">طَ</div>
+    <div class="letter" data-sound="sounds/za2_fatha.m4a">ظَ</div>
+    <div class="letter" data-sound="sounds/ain_fatha.m4a">عَ</div>
+</div>
+
+<!-- Ligne 5 -->
+<div class="line">
+    <div class="letter" data-sound="sounds/ghain_fatha.m4a">غَ</div>
+    <div class="letter" data-sound="sounds/fa_fatha.m4a">فَ</div>
+    <div class="letter" data-sound="sounds/qaf_fatha.m4a">قَ</div>
+    <div class="letter" data-sound="sounds/kaf_fatha.m4a">كَ</div>
+    <div class="letter" data-sound="sounds/lam_fatha.m4a">لَ</div>
+    <div class="letter" data-sound="sounds/mim_fatha.m4a">مَ</div>
+    <div class="letter" data-sound="sounds/nun_fatha.m4a">نَ</div>
+    <div class="letter" data-sound="sounds/ha2_fatha.m4a">هَ</div>
+    <div class="letter" data-sound="sounds/waw_fatha.m4a">وَ</div>
+</div>
+
+<!-- Ligne 6 -->
+<div class="line">
+    <div class="letter" data-sound="sounds/ya_fatha.m4a">يَ</div>
+    <div class="letter" data-sound="sounds/ra_kasra.m4a">رِ</div>
+    <div class="letter" data-sound="sounds/zay_kasra.m4a">زِ</div>
+    <div class="letter" data-sound="sounds/sin_kasra.m4a">سِ</div>
+    <div class="letter" data-sound="sounds/shin_kasra.m4a">شِ</div>
+    <div class="letter" data-sound="sounds/sad_kasra.m4a">صِ</div>
+    <div class="letter" data-sound="sounds/dad_kasra.m4a">ضِ</div>
+    <div class="letter" data-sound="sounds/ta2_kasra.m4a">طِ</div>
+    <div class="letter" data-sound="sounds/za2_kasra.m4a">ظِ</div>
+</div>
+
+<!-- Ligne 7 -->
+<div class="line">
+    <div class="letter" data-sound="sounds/ain_kasra.m4a">عِ</div>
+    <div class="letter" data-sound="sounds/ghain_kasra.m4a">غِ</div>
+    <div class="letter" data-sound="sounds/fa_kasra.m4a">فِ</div>
+    <div class="letter" data-sound="sounds/qaf_kasra.m4a">قِ</div>
+    <div class="letter" data-sound="sounds/kaf_kasra.m4a">كِ</div>
+    <div class="letter" data-sound="sounds/lam_kasra.m4a">لِ</div>
+    <div class="letter" data-sound="sounds/mim_kasra.m4a">مِ</div>
+    <div class="letter" data-sound="sounds/nun_kasra.m4a">نِ</div>
+    <div class="letter" data-sound="sounds/ha2_kasra.m4a">هِ</div>
+</div>
+
+<!-- Ligne 8 -->
+<div class="line">
+    <div class="letter" data-sound="sounds/waw_kasra.m4a">وِ</div>
+    <div class="letter" data-sound="sounds/ya_kasra.m4a">يِ</div>
+    <div class="letter" data-sound="sounds/ra_damma.m4a">رُ</div>
+    <div class="letter" data-sound="sounds/zay_damma.m4a">زُ</div>
+    <div class="letter" data-sound="sounds/sin_damma.m4a">سُ</div>
+    <div class="letter" data-sound="sounds/shin_damma.m4a">شُ</div>
+    <div class="letter" data-sound="sounds/sad_damma.m4a">صُ</div>
+    <div class="letter" data-sound="sounds/dad_damma.m4a">ضُ</div>
+    <div class="letter" data-sound="sounds/ta2_damma.m4a">طُ</div>
+</div>
+
+<!-- Ligne 9 -->
+<div class="line">
+    <div class="letter" data-sound="sounds/za2_damma.m4a">ظُ</div>
+    <div class="letter" data-sound="sounds/ain_damma.m4a">عُ</div>
+    <div class="letter" data-sound="sounds/ghain_damma.m4a">غُ</div>
+    <div class="letter" data-sound="sounds/fa_damma.m4a">فُ</div>
+    <div class="letter" data-sound="sounds/qaf_damma.m4a">قُ</div>
+    <div class="letter" data-sound="sounds/kaf_damma.m4a">كُ</div>
+    <div class="letter" data-sound="sounds/lam_damma.m4a">لُ</div>
+    <div class="letter" data-sound="sounds/mim_damma.m4a">مُ</div>
+    <div class="letter" data-sound="sounds/nun_damma.m4a">نُ</div>
+</div>
+
+<!-- Ligne 10 -->
+<div class="line">
+    <div class="letter" data-sound="sounds/ha2_damma.m4a">هُ</div>
+    <div class="letter" data-sound="sounds/waw_damma.m4a">وُ</div>
+    <div class="letter" data-sound="sounds/ya_damma.m4a">يُ</div>
+</div>
+
+<script>
+const letters = document.querySelectorAll('.letter');
+letters.forEach(letter => {
+    letter.addEventListener('click', () => {
+        letter.classList.add('active');
+        setTimeout(() => {
+            letter.classList.remove('active');
+        }, 300);
+
+        const audioSrc = letter.getAttribute('data-sound');
+        const audio = new Audio(audioSrc);
+        audio.play();
+    });
+});
+</script>
+
+</body>
+</html>
+
+
+
+
+
