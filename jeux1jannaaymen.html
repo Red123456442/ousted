@@ -3,83 +3,130 @@
 <head>
 <meta charset="UTF-8">
 <title>Jeu 1 - Memory Lettres & Sons</title>
+
 <style>
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #fffbf0; /* même que Kiyan */
+    background-color: #fffbf0;
     padding: 20px;
     margin: 0;
 }
-h1 { color: #1a237e; } /* titre bleu foncé Kiyan */
+h1 { color: #1a237e; }
 #score { font-size: 24px; margin: 20px; color: #1a237e; }
+
 .grid {
-    display: flex; flex-wrap: wrap; justify-content: center; max-width: 800px; margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 800px;
+    margin: auto;
 }
+
 .card {
-    width: 100px; height: 100px; margin: 10px;
-    background-color: #5c6bc0; /* fond carte bleu Kiyan */
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    background-color: #5c6bc0;
     color: white;
     border-radius: 10px;
-    font-size: 32px; display: flex; justify-content: center; align-items: center;
-    cursor: pointer; transition: transform 0.2s, background-color 0.3s;
+    font-size: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.3s;
 }
-.card.flipped { background-color: #7986cb; transform: scale(1.1); }
-.card.matched { background-color: #27ae60; color: white; cursor: default; }
+
+.card.flipped {
+    background-color: #7986cb;
+    transform: scale(1.1);
+}
+
+.card.matched {
+    background-color: #27ae60;
+    color: white;
+    cursor: default;
+}
 </style>
 </head>
+
 <body>
+
 <h1>Memory Lettres & Sons</h1>
 <div id="score">Score : 0</div>
 <div class="grid" id="grid"></div>
 
 <script>
+// ----------------------------------------------
+// LISTE LETTRES + SONS
+// ----------------------------------------------
 const letters = [
-    {letter: "ـفـ", audio: "sounds/fa_damma.m4a"},
-    {letter: "ـيَـ", audio: "sounds/ya_fatha.m4a"},
-    {letter: "وَ", audio: "sounds/wa_alif.m4a"},
-    {letter: "قا", audio: "sounds/qa.m4a"},
-    {letter: "وي", audio: "sounds/wi.m4a"},
-    {letter: "غاً", audio: "sounds/gh.m4a"},
-    {letter: "ضو", audio: "sounds/do.m4a"},
-    {letter: "مِنَ", audio: "sounds/min.m4a"},
-    {letter: "شايُُ", audio: "sounds/shay.m4a"},
-    {letter: "كي", audio: "sounds/ki.m4a"}
+    {text:"ـفـ", audio:"sounds/fa_damma.m4a"},
+    {text:"ـيَـ", audio:"sounds/ya_fatha.m4a"},
+    {text:"وَ", audio:"sounds/wa_fatha.m4a"},
+    {text:"قا", audio:"sounds/qa_alif.m4a"},
+    {text:"وي", audio:"sounds/wi.m4a"},
+    {text:"غاً", audio:"sounds/gha_tanouine.m4a"},
+    {text:"ضو", audio:"sounds/do.m4a"},
+    {text:"مِنَ", audio:"sounds/mina.m4a"},
+    {text:"شايُُ", audio:"sounds/shay.m4a"},
+    {text:"كي", audio:"sounds/ki.m4a"},
 ];
 
+// ----------------------------------------------
+// CRÉATION DES CARTES (2 par lettre : texte + audio)
+// ----------------------------------------------
 let cardsArray = [];
+
 letters.forEach(item => {
-    cardsArray.push({type: 'letter', content: item.letter, pairId: item.letter});
-    cardsArray.push({type: 'audio', content: item.audio, pairId: item.letter});
+    cardsArray.push({
+        type: 'letter',
+        content: item.text,
+        pairId: item.text
+    });
+
+    cardsArray.push({
+        type: 'audio',
+        content: item.audio,
+        pairId: item.text
+    });
 });
 
-// Mélanger les cartes
+// Mélange
 cardsArray.sort(() => 0.5 - Math.random());
 
 const grid = document.getElementById('grid');
-let firstCard = null, secondCard = null;
+let firstCard = null;
+let secondCard = null;
 let score = 0;
 
+// ----------------------------------------------
+// CRÉER UNE CARTE
+// ----------------------------------------------
 function createCard(cardData) {
     const card = document.createElement('div');
     card.classList.add('card');
     card.dataset.pairId = cardData.pairId;
     card.dataset.type = cardData.type;
-    card.textContent = '';
     card.addEventListener('click', () => flipCard(card, cardData));
     grid.appendChild(card);
 }
 
+// ----------------------------------------------
+// RETOURNER UNE CARTE
+// ----------------------------------------------
 function flipCard(card, cardData) {
     if(card.classList.contains('flipped') || card.classList.contains('matched')) return;
 
     card.classList.add('flipped');
+
     if(cardData.type === 'letter') {
         card.textContent = cardData.content;
-    } else {
-        card.textContent = '🔊';
-        const audio = new Audio(cardData.content);
-        audio.play();
+    } 
+    else {
+        card.textContent = "🔊";
+        new Audio(cardData.content).play();
     }
 
     if(!firstCard) {
@@ -90,21 +137,29 @@ function flipCard(card, cardData) {
     }
 }
 
+// ----------------------------------------------
+// VÉRIFIER MATCH
+// ----------------------------------------------
 function checkMatch() {
-    if(firstCard.cardData.pairId === secondCard.cardData.pairId && firstCard.cardData.type !== secondCard.cardData.type) {
+    if(
+        firstCard.cardData.pairId === secondCard.cardData.pairId &&
+        firstCard.cardData.type !== secondCard.cardData.type
+    ) {
         firstCard.card.classList.add('matched');
         secondCard.card.classList.add('matched');
+
         score++;
-        document.getElementById('score').textContent = 'Score : ' + score;
+        document.getElementById('score').textContent = "Score : " + score;
+
         resetTurn();
     } else {
         setTimeout(() => {
             firstCard.card.classList.remove('flipped');
             secondCard.card.classList.remove('flipped');
-            firstCard.card.textContent = '';
-            secondCard.card.textContent = '';
+            firstCard.card.textContent = "";
+            secondCard.card.textContent = "";
             resetTurn();
-        }, 1000);
+        }, 800);
     }
 }
 
@@ -113,9 +168,12 @@ function resetTurn() {
     secondCard = null;
 }
 
-// Créer toutes les cartes
+// ----------------------------------------------
+// CRÉER TOUTES LES CARTES
+// ----------------------------------------------
 cardsArray.forEach(cardData => createCard(cardData));
 </script>
+
 </body>
 </html>
 

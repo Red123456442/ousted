@@ -3,28 +3,36 @@
 <head>
 <meta charset="UTF-8">
 <title>Jeu 2 - Lettres/Mots qui descendent</title>
+
 <style>
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #fffbf0; /* fond Kiyan */
+    background-color: #fffbf0;
     overflow: hidden;
     position: relative;
     height: 100vh;
     margin: 0;
 }
-h1 { color: #1a237e; margin-top: 10px; } /* titre bleu Kiyan */
-#score, #timer { font-size: 24px; margin: 10px; color: #1a237e; } /* score bleu foncé */
+h1 { 
+    color: #1a237e; 
+    margin-top: 10px; 
+}
+#score, #timer { 
+    font-size: 24px; 
+    margin: 10px; 
+    color: #1a237e; 
+}
 .falling {
     position: absolute;
     font-size: 32px;
-    background-color: #5c6bc0; /* fond carte bleu Kiyan */
-    color: white; /* texte blanc */
+    background-color: #5c6bc0;
+    color: white;
     border-radius: 10px;
     padding: 10px;
     cursor: pointer;
     user-select: none;
-    border: 2px solid #1a237e; /* bordure Kiyan */
+    border: 2px solid #1a237e;
     transition: transform 0.2s;
 }
 .falling:hover {
@@ -32,35 +40,38 @@ h1 { color: #1a237e; margin-top: 10px; } /* titre bleu Kiyan */
 }
 </style>
 </head>
+
 <body>
-<h1>Lettres/Mots qui descendent</h1>
+
+<h1>Lettres / Mots qui descendent</h1>
 <div id="score">Score : 0</div>
 <div id="timer">Temps : 15s</div>
 
 <script>
-// Lettres et mots avec harakat et mots courts
+// ---------------------------------------------------------
+// LISTE DES LETTRES/MOTS + SONS (corrigée, valide)
+// ---------------------------------------------------------
 const items = [
     {text:"ـفـ", audio:"sounds/fa_damma.m4a"},
     {text:"ـيَـ", audio:"sounds/ya_fatha.m4a"},
-    {text:"وَ", audio:"sounds/wa_alif.m4a"},
-    {text:"قا", audio:"sounds/qa.m4a"},
+    {text:"وَ", audio:"sounds/wa_fatha.m4a"},
+    {text:"قا", audio:"sounds/qa_alif.m4a"},
     {text:"وي", audio:"sounds/wi.m4a"},
-    {text:"غاً", audio:"sounds/gh.m4a"},
+    {text:"غاً", audio:"sounds/gha_tanouine.m4a"},
     {text:"ضو", audio:"sounds/do.m4a"},
-    {text:"مِنَ", audio:"sounds/min.m4a"},
+    {text:"مِنَ", audio:"sounds/mina.m4a"},
     {text:"شايُُ", audio:"sounds/shay.m4a"},
     {text:"كي", audio:"sounds/ki.m4a"},
-    {text:"عو", audio:"sounds/aw.m4a"},
+    {text:"عو", audio:"sounds/awou.m4a"},
     {text:"قابَ", audio:"sounds/qab.m4a"},
-    {text:"نِمِرُُ", audio:"sounds/nimr.m4a"},
-    {text:"طيبُُكَتَبَ", audio:"sounds/taybkatab.m4a"},
+    {text:"نَمِرُ", audio:"sounds/namir.m4a"},
     {text:"كُتُبُُ", audio:"sounds/kutub.m4a"},
-    {text:"ثٍ", audio:"sounds/thi.m4a"},
+    {text:"ثٍ", audio:"sounds/thin_tanouine.m4a"},
     {text:"ماما", audio:"sounds/mama.m4a"},
-    {text:"شاً", audio:"sounds/shan.m4a"},
+    {text:"شاً", audio:"sounds/shan_tanouine.m4a"},
     {text:"في", audio:"sounds/fi.m4a"},
     {text:"خو", audio:"sounds/khou.m4a"},
-    {text:"طورُُ", audio:"sounds/tour.m4a"},
+    {text:"طورُُ", audio:"sounds/torone.m4a"},
     {text:"بَ", audio:"sounds/ba_fatha.m4a"},
     {text:"بُ", audio:"sounds/ba_damma.m4a"},
     {text:"بِ", audio:"sounds/ba_kasra.m4a"},
@@ -70,19 +81,24 @@ const items = [
     {text:"ثَ", audio:"sounds/tha_fatha.m4a"},
     {text:"ثُ", audio:"sounds/tha_damma.m4a"},
     {text:"ثِ", audio:"sounds/tha_kasra.m4a"},
-    {text:"FI", audio:"sounds/FI.m4a"},
-    {text:"JOU", audio:"sounds/JOU.m4a"},
-    {text:"BA", audio:"sounds/BA.m4a"}
+    {text:"فِقُ", audio:"sounds/fiqo.m4a"},
+    {text:"جو", audio:"sounds/jou.m4a"},
+    {text:"ليبا", audio:"sounds/liba.m4a"}
 ];
 
+// ---------------------------------------------------------
+// VARIABLES DU JEU
+// ---------------------------------------------------------
 let score = 0;
-let gameTime = 15;
+let gameTime = 30;
 const timerDiv = document.getElementById('timer');
 const scoreDiv = document.getElementById('score');
 let activeItem = null;
 let clickTimeout = null;
 
-// Créer une lettre/mot tombant
+// ---------------------------------------------------------
+// CRÉATION D'ÉLÉMENTS QUI TOMBENT
+// ---------------------------------------------------------
 function createFallingItem(itemObj){
     const div = document.createElement('div');
     div.classList.add('falling');
@@ -96,16 +112,18 @@ function createFallingItem(itemObj){
     const interval = setInterval(()=>{
         pos += speed;
         div.style.top = pos + "px";
-        if(pos>window.innerHeight){
+
+        if(pos > window.innerHeight){
             div.remove();
             clearInterval(interval);
         }
     },20);
 
     div.addEventListener('click', ()=>{
-        if(activeItem && div.textContent.trim()===activeItem.text.trim()){
+        if(activeItem && div.textContent.trim() === activeItem.text.trim()){
             score++;
-            scoreDiv.textContent = "Score : "+score;
+            scoreDiv.textContent = "Score : " + score;
+
             div.remove();
             clearTimeout(clickTimeout);
             playNextSound();
@@ -113,44 +131,58 @@ function createFallingItem(itemObj){
     });
 }
 
-// Jouer le son actif
+// ---------------------------------------------------------
+// LANCER LE SON SUIVANT
+// ---------------------------------------------------------
 function playNextSound(){
     const index = Math.floor(Math.random()*items.length);
     activeItem = items[index];
 
-    // S'assurer qu'au moins une lettre/mot correspondant est visible
+    // Vérifier qu'au moins 1 bonne lettre est à l'écran
     const exists = Array.from(document.querySelectorAll('.falling'))
         .some(d => d.textContent.trim() === activeItem.text.trim());
+
     if(!exists) createFallingItem(activeItem);
 
     const audio = new Audio(activeItem.audio);
     audio.play();
 
-    clickTimeout = setTimeout(playNextSound,5000);
+    clickTimeout = setTimeout(playNextSound, 5000);
 }
 
-// Créer des lettres/mots tombants toutes les 1,2s
+// ---------------------------------------------------------
+// FAIRE TOMBER DES LETTRES EN CONTINU
+// ---------------------------------------------------------
 const fallingInterval = setInterval(()=>{
     const randIndex = Math.floor(Math.random()*items.length);
     createFallingItem(items[randIndex]);
-},1200);
+}, 1200);
 
-// Timer global
+// ---------------------------------------------------------
+// TIMER DU JEU
+// ---------------------------------------------------------
 const gameTimer = setInterval(()=>{
     gameTime--;
-    timerDiv.textContent="Temps : "+gameTime+"s";
-    if(gameTime<=0){
+    timerDiv.textContent = "Temps : " + gameTime + "s";
+
+    if(gameTime <= 0){
         clearInterval(gameTimer);
         clearInterval(fallingInterval);
         clearTimeout(clickTimeout);
-        alert("⏰ Temps écoulé ! Score final : "+score);
-        document.querySelectorAll('.falling').forEach(d=>d.remove());
+
+        alert("⏰ Temps écoulé ! Score final : " + score);
+
+        document.querySelectorAll('.falling').forEach(d => d.remove());
     }
 },1000);
 
-// Démarrer le premier son après 1s
-setTimeout(playNextSound,1000);
+// ---------------------------------------------------------
+// DÉMARRER APRÈS UNE SECONDE
+// ---------------------------------------------------------
+setTimeout(playNextSound, 1000);
 </script>
+
 </body>
 </html>
+
 
