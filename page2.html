@@ -9,7 +9,7 @@
 /* ----- STYLE GÉNÉRAL ----- */
 body {
     font-family: Arial, sans-serif;
-    background-color: #fffbf0; /* blanc cassé / crème */
+    background-color: #fffbf0; /* crème cassée */
     margin: 0;
     text-align: center;
 }
@@ -26,30 +26,43 @@ h1 {
     margin: 20px auto;
     overflow: hidden;
     border-radius: 15px;
-    border: 2px solid #1a237e;
     position: relative;
-    background-color: #fffbf0; /* blanc cassé / crème autour des images */
+    background-color: #fdf7e8; /* fond crème */
+}
+
+/* cadre décoratif avec pseudo-élément */
+.carousel::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    border-radius: 20px;
+    background-image: url('oriental.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 1;
+    pointer-events: none; /* pour que les clics passent */
 }
 
 .carousel-track {
     display: flex;
     transition: transform 0.5s ease;
+    position: relative;
+    z-index: 2; /* devant le cadre */
 }
 
 .carousel-item {
     min-width: 100%;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .carousel-item img {
     width: 100%;
-    height: 250px;         /* hauteur mobile */
-    object-fit: contain;    /* image entière visible */
+    height: 250px; /* mobile */
+    object-fit: contain; /* pour voir l'image entière */
     border-radius: 15px;
-    background-color: #fffbf0; /* blanc cassé derrière l'image */
 }
 
 /* ----- AGRANDIR CARROUSEL SUR ORDINATEUR ----- */
@@ -60,8 +73,7 @@ h1 {
     }
 
     .carousel-item img {
-        height: 350px;       /* hauteur PC */
-        background-color: #fffbf0;
+        height: 400px; /* PC */
     }
 }
 
@@ -77,7 +89,7 @@ h1 {
 .level {
     width: 280px;
     height: auto;
-    background-color: #5c6bc0;
+    background-color: #7986cb; /* bleu clair */
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -93,12 +105,12 @@ h1 {
 }
 
 .level:hover {
-    transform: scale(1.05);
-    background-color: #7986cb;
+    transform: scale(1.08);
+    background-color: #5c6bc0; /* effet hover un peu plus foncé */
 }
 
 .level-name {
-    font-size: 20px;
+    font-size: 18px;
     margin-top: 8px;
     color: #fff;
 }
@@ -112,25 +124,20 @@ h1 {
 <!-- ----- CARROUSEL ----- -->
 <div class="carousel">
     <div class="carousel-track">
-
         <div class="carousel-item" onclick="window.location.href='pagemoncoran.html'">
             <img src="dossier1.jpg" alt="Dossier 1">
         </div>
-
         <div class="carousel-item" onclick="window.location.href='pagemeslettres.html'">
             <img src="dossier2.jpg" alt="Dossier 2">
         </div>
-
         <div class="carousel-item" onclick="window.location.href='pagemescours.html'">
             <img src="dossier3.jpg" alt="Dossier 3">
         </div>
-
     </div>
 </div>
 
 <!-- ----- BLOCS NIVEAUX ----- -->
 <div class="levels">
-
     <div class="level" onclick="window.location.href='kiyan.html'">
         Niveau 1
         <div class="level-name">Kiyan</div>
@@ -145,7 +152,6 @@ h1 {
         Niveau 3
         <div class="level-name">Hafssa, Kenza & Nour</div>
     </div>
-
 </div>
 
 <script>
@@ -164,6 +170,9 @@ setInterval(nextSlide, 3000);
 
 </body>
 </html>
+
+
+
 
 
 
