@@ -23,21 +23,34 @@ h1 {
     margin: 10px; 
     color: #1a237e; 
 }
-.falling {
-    position: absolute;
-    font-size: 32px;
+button {
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid #1a237e;
     background-color: #5c6bc0;
     color: white;
-    border-radius: 10px;
-    padding: 10px;
     cursor: pointer;
-    user-select: none;
-    border: 2px solid #1a237e;
+    margin: 20px;
     transition: transform 0.2s;
 }
-.falling:hover {
-    transform: scale(1.1);
+button:hover { transform: scale(1.1); }
+
+.falling {
+    position: absolute;
+    font-size: 40px;
+    background-color: #5c6bc0;
+    color: white;
+    border-radius: 15px;
+    padding: 25px 30px;
+    cursor: pointer;
+    user-select: none;
+    border: 3px solid #1a237e;
+    transition: transform 0.2s;
+    min-width: 90px;
+    text-align: center;
 }
+.falling:hover { transform: scale(1.12); }
 </style>
 </head>
 
@@ -45,11 +58,12 @@ h1 {
 
 <h1>Lettres / Mots qui descendent</h1>
 <div id="score">Score : 0</div>
-<div id="timer">Temps : 15s</div>
+<div id="timer">Temps : 30s</div>
+<button id="startBtn">Démarrer le jeu</button>
 
 <script>
 // ---------------------------------------------------------
-// LISTE DES LETTRES/MOTS + SONS (corrigée, valide)
+// LISTE DES LETTRES/MOTS + SONS
 // ---------------------------------------------------------
 const items = [
     {text:"ـفـ", audio:"sounds/fa_damma.m4a"},
@@ -95,6 +109,8 @@ const timerDiv = document.getElementById('timer');
 const scoreDiv = document.getElementById('score');
 let activeItem = null;
 let clickTimeout = null;
+let fallingInterval = null;
+let gameTimer = null;
 
 // ---------------------------------------------------------
 // CRÉATION D'ÉLÉMENTS QUI TOMBENT
@@ -103,7 +119,7 @@ function createFallingItem(itemObj){
     const div = document.createElement('div');
     div.classList.add('falling');
     div.textContent = itemObj.text;
-    div.style.left = Math.random() * (window.innerWidth - 80) + "px";
+    div.style.left = Math.random() * (window.innerWidth - 120) + "px";
     div.style.top = "0px";
     document.body.appendChild(div);
 
@@ -138,7 +154,6 @@ function playNextSound(){
     const index = Math.floor(Math.random()*items.length);
     activeItem = items[index];
 
-    // Vérifier qu'au moins 1 bonne lettre est à l'écran
     const exists = Array.from(document.querySelectorAll('.falling'))
         .some(d => d.textContent.trim() === activeItem.text.trim());
 
@@ -151,35 +166,44 @@ function playNextSound(){
 }
 
 // ---------------------------------------------------------
-// FAIRE TOMBER DES LETTRES EN CONTINU
+// FONCTION DÉMARRER LE JEU
 // ---------------------------------------------------------
-const fallingInterval = setInterval(()=>{
-    const randIndex = Math.floor(Math.random()*items.length);
-    createFallingItem(items[randIndex]);
-}, 1200);
+function startGame(){
+    document.getElementById('startBtn').disabled = true; // désactive le bouton
+    score = 0;
+    gameTime = 30;
+    scoreDiv.textContent = "Score : 0";
+    timerDiv.textContent = "Temps : 30s";
+
+    fallingInterval = setInterval(()=>{
+        const randIndex = Math.floor(Math.random()*items.length);
+        createFallingItem(items[randIndex]);
+    }, 1200);
+
+    gameTimer = setInterval(()=>{
+        gameTime--;
+        timerDiv.textContent = "Temps : " + gameTime + "s";
+
+        if(gameTime <= 0){
+            clearInterval(gameTimer);
+            clearInterval(fallingInterval);
+            clearTimeout(clickTimeout);
+
+            alert("⏰ Temps écoulé ! Score final : " + score);
+
+            document.querySelectorAll('.falling').forEach(d => d.remove());
+            document.getElementById('startBtn').disabled = false; // réactive le bouton
+        }
+    },1000);
+
+    setTimeout(playNextSound, 1000);
+}
 
 // ---------------------------------------------------------
-// TIMER DU JEU
+// BOUTON START
 // ---------------------------------------------------------
-const gameTimer = setInterval(()=>{
-    gameTime--;
-    timerDiv.textContent = "Temps : " + gameTime + "s";
+document.getElementById('startBtn').addEventListener('click', startGame);
 
-    if(gameTime <= 0){
-        clearInterval(gameTimer);
-        clearInterval(fallingInterval);
-        clearTimeout(clickTimeout);
-
-        alert("⏰ Temps écoulé ! Score final : " + score);
-
-        document.querySelectorAll('.falling').forEach(d => d.remove());
-    }
-},1000);
-
-// ---------------------------------------------------------
-// DÉMARRER APRÈS UNE SECONDE
-// ---------------------------------------------------------
-setTimeout(playNextSound, 1000);
 </script>
 
 </body>
