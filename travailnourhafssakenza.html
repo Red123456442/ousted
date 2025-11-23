@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travail à faire - Nour, Hafssa & Kenza</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fffbf0;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    color: #1a237e;
+    margin-top: 20px;
+}
+
+.consignes {
+    width: 90%;
+    max-width: 900px;
+    margin: 20px auto;
+    font-size: 20px;
+    color: #1a237e;
+}
+
+/* PDF viewer */
+.pdf-container {
+    width: 90%;
+    max-width: 900px;
+    height: 500px;
+    margin: 20px auto;
+    border: 2px solid #1a237e;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* Questions */
+.questions {
+    margin: 30px auto;
+    width: 90%;
+    max-width: 800px;
+    text-align: left;
+}
+
+.question {
+    margin-bottom: 20px;
+}
+
+.question label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+/* Input avec clavier arabe */
+.arabic-input {
+    width: 100%;
+    font-size: 22px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid #1a237e;
+    direction: rtl;
+    text-align: right;
+}
+
+/* Clavier arabe virtuel */
+.keyboard {
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.key {
+    font-size: 22px;
+    margin: 5px;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #5c6bc0;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.2s;
+}
+
+.key:hover {
+    background-color: #7986cb;
+}
+
+button#submitBtn {
+    margin-top: 20px;
+    font-size: 20px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    background-color: #1a237e;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button#submitBtn:hover {
+    background-color: #3949ab;
+}
+</style>
+</head>
+<body>
+
+<h1>Travail à faire</h1>
+
+<div class="consignes">
+Lisez attentivement tout le document, puis répondez aux 5 questions ci-dessous. Notez également vos réponses sur une feuille pour correction ( répondez en ARABE):
+</div>
+
+<div class="pdf-container">
+    <iframe src="lecon1.pdf" width="100%" height="100%"></iframe>
+</div>
+
+<div class="questions">
+    <div class="question">
+        <label for="q1">Q1 : Comment s'appelle la petite fille ?</label>
+        <input type="text" id="q1" class="arabic-input" placeholder="ا..." lang="ar">
+    </div>
+    <div class="question">
+        <label for="q2">Q2 : Qu'a-t-elle entendu ?</label>
+        <input type="text" id="q2" class="arabic-input" placeholder="ا..." lang="ar">
+    </div>
+    <div class="question">
+        <label for="q3">Q3 : Qu'a-t-elle dit ou répétez ?</label>
+        <input type="text" id="q3" class="arabic-input" placeholder="ا..." lang="ar">
+    </div>
+    <div class="question">
+        <label for="q4">Q4 : Comment dire "PAIN" en arabe ?</label>
+        <input type="text" id="q4" class="arabic-input" placeholder="ا..." lang="ar">
+    </div>
+    <div class="question">
+        <label for="q5">Q5 : Comment dire "CUISINIER" en arabe ?</label>
+        <input type="text" id="q5" class="arabic-input" placeholder="ا..." lang="ar">
+    </div>
+    <button id="submitBtn">Envoyer</button>
+</div>
+
+<!-- Clavier arabe virtuel -->
+<div class="keyboard" id="keyboard">
+    <!-- Lettres arabes -->
+    <div class="key">ا</div>
+    <div class="key">ب</div>
+    <div class="key">ت</div>
+    <div class="key">ث</div>
+    <div class="key">ج</div>
+    <div class="key">ح</div>
+    <div class="key">خ</div>
+    <div class="key">د</div>
+    <div class="key">ذ</div>
+    <div class="key">ر</div>
+    <div class="key">ز</div>
+    <div class="key">س</div>
+    <div class="key">ش</div>
+    <div class="key">ص</div>
+    <div class="key">ض</div>
+    <div class="key">ط</div>
+    <div class="key">ظ</div>
+    <div class="key">ع</div>
+    <div class="key">غ</div>
+    <div class="key">ف</div>
+    <div class="key">ق</div>
+    <div class="key">ك</div>
+    <div class="key">ل</div>
+    <div class="key">م</div>
+    <div class="key">ن</div>
+    <div class="key">ه</div>
+    <div class="key">و</div>
+    <div class="key">ي</div>
+
+    <!-- Harakat / signes -->
+    <div class="key">َ</div> <!-- fatha -->
+    <div class="key">ُ</div> <!-- damma -->
+    <div class="key">ِ</div> <!-- kasra -->
+    <div class="key">ّ</div> <!-- shadda -->
+    <div class="key">ْ</div> <!-- sukun -->
+    <div class="key">ً</div> <!-- tanwin fatha -->
+    <div class="key">ٌ</div> <!-- tanwin damma -->
+    <div class="key">ٍ</div> <!-- tanwin kasra -->
+
+    <div class="key" id="backspace">⌫</div>
+</div>
+
+<script>
+// Gestion du clavier virtuel
+let activeInput = null;
+document.querySelectorAll('.arabic-input').forEach(input => {
+    input.addEventListener('focus', () => {
+        activeInput = input;
+    });
+});
+
+document.querySelectorAll('.key').forEach(key => {
+    key.addEventListener('click', () => {
+        if (!activeInput) return;
+        if (key.id === "backspace") {
+            activeInput.value = activeInput.value.slice(0, -1);
+        } else {
+            activeInput.value += key.textContent;
+        }
+        activeInput.focus();
+    });
+});
+
+// Soumission du formulaire
+document.getElementById('submitBtn').addEventListener('click', () => {
+    const answers = [];
+    document.querySelectorAll('.arabic-input').forEach(input => answers.push(input.value));
+    alert("Réponses envoyées :\n" + answers.join("\n"));
+});
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

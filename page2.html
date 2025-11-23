@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Page 2 - Dossiers</title>
+
 <style>
 /* ----- STYLE GÉNÉRAL ----- */
 body {
@@ -20,11 +21,11 @@ h1 {
 
 /* ----- CARROUSEL ----- */
 .carousel {
-    width: 80%;
-    max-width: 800px;
+    width: 90%;
+    max-width: 900px;
     margin: 20px auto;
     overflow: hidden;
-    border-radius: 10px;
+    border-radius: 15px;
     border: 2px solid #1a237e;
     position: relative;
 }
@@ -41,33 +42,48 @@ h1 {
 
 .carousel-item img {
     width: 100%;
-    border-radius: 10px;
+    height: 340px; /* Hauteur mobile */
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+/* ----- AGRANDIR CARROUSEL SUR ORDINATEUR ----- */
+@media (min-width: 900px) {
+    .carousel {
+        width: 92%;
+        max-width: 1500px;
+    }
+
+    .carousel-item img {
+        height: 550px; /* hauteur PC */
+    }
 }
 
 /* ----- BLOCS NIVEAUX HORIZONTAUX ----- */
 .levels {
     display: flex;
-    justify-content: center; /* aligne les niveaux horizontalement */
-    margin-top: 30px;
-    gap: 20px; /* espace entre les niveaux */
-    flex-wrap: wrap; /* s’adapte aux écrans plus petits */
+    justify-content: center;
+    margin-top: 40px;
+    gap: 25px;
+    flex-wrap: wrap;
 }
 
 .level {
-    width: 200px;
+    width: 250px;
     height: auto;
-    background-color: #5c6bc0; /* bleu clair */
+    background-color: #5c6bc0;
     color: #fff;
     display: flex;
-    flex-direction: column; /* empile le titre et le nom verticalement */
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
+    border-radius: 15px;
     font-weight: bold;
     cursor: pointer;
     transition: 0.3s;
-    padding: 10px;
+    padding: 20px;
     text-align: center;
+    font-size: 22px;
 }
 
 .level:hover {
@@ -76,12 +92,13 @@ h1 {
 }
 
 .level-name {
-    font-size: 0.9em;
+    font-size: 18px;
     margin-top: 8px;
     color: #fff;
 }
 </style>
 </head>
+
 <body>
 
 <h1>Bienvenue sur la Page 2</h1>
@@ -90,17 +107,14 @@ h1 {
 <div class="carousel">
     <div class="carousel-track">
 
-        <!-- DOSSIER 1 -->
         <div class="carousel-item" onclick="window.location.href='pagemoncoran.html'">
             <img src="dossier1.jpg" alt="Dossier 1">
         </div>
 
-        <!-- DOSSIER 2 -->
         <div class="carousel-item" onclick="window.location.href='pagemeslettres.html'">
             <img src="dossier2.jpg" alt="Dossier 2">
         </div>
 
-        <!-- DOSSIER 3 -->
         <div class="carousel-item" onclick="window.location.href='pagemescours.html'">
             <img src="dossier3.jpg" alt="Dossier 3">
         </div>
@@ -108,25 +122,24 @@ h1 {
     </div>
 </div>
 
-<!-- ----- BLOCS NIVEAUX HORIZONTAUX ----- -->
+<!-- ----- BLOCS NIVEAUX ----- -->
 <div class="levels">
-    <!-- Niveau 1 : Kiyan mène vers kiyan.html -->
+
     <div class="level" onclick="window.location.href='kiyan.html'">
         Niveau 1
         <div class="level-name">Kiyan</div>
     </div>
 
-    <!-- Niveau 2 : Janna & Aymen mène vers jannaaymen.html -->
     <div class="level" onclick="window.location.href='jannaaymen.html'">
         Niveau 2
         <div class="level-name">Janna & Aymen</div>
     </div>
 
-    <!-- Niveau 3 : Hafssa, Kenza & Nour -->
-    <div class="level" onclick="window.location.href='niveau3.html'">
+    <div class="level" onclick="window.location.href='pagenourhafssakenza.html'">
         Niveau 3
         <div class="level-name">Hafssa, Kenza & Nour</div>
     </div>
+
 </div>
 
 <script>
@@ -140,11 +153,19 @@ function nextSlide() {
     track.style.transform = `translateX(-${index * 100}%)`;
 }
 
-setInterval(nextSlide, 3000); // change d’image toutes les 3 secondes
+setInterval(nextSlide, 3000);
 </script>
 
 </body>
 </html>
+
+
+
+
+
+
+
+
 
 
 
