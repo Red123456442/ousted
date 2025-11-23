@@ -24,7 +24,7 @@
         justify-content: center;
         gap: 20px;
         flex-wrap: wrap;
-        direction: rtl; /* affichage de droite à gauche */
+        direction: rtl; 
     }
 
     .letter-box {
@@ -55,27 +55,25 @@
 
 <div class="letters-container">
 
-    <div class="letter-box" data-sound="sounds/alif.m4a" onclick="location.href='alifkiyan.html'">ا</div>
+    <div class="letter-box" data-sound="sounds/a_fatha.m4a">ا</div>
 
-    <div class="letter-box" data-sound="sounds/ba.m4a" onclick="location.href='baikiyan.html'">ب</div>
+    <div class="letter-box" data-sound="sounds/ba_fatha.m4a">ب</div>
 
-    <div class="letter-box" data-sound="sounds/ta.m4a" onclick="location.href='takiyan.html'">ت</div>
+    <div class="letter-box" data-sound="sounds/ta_fatha.m4a">ت</div>
 
-    <div class="letter-box" data-sound="sounds/tha.m4a" onclick="location.href='thakiyan.html'">ث</div>
+    <div class="letter-box" data-sound="sounds/tha_fatha.m4a">ث</div>
 
-    <div class="letter-box" data-sound="sounds/jeem.m4a" onclick="location.href='jeemkiyan.html'">ج</div>
+    <div class="letter-box" data-sound="sounds/jeem_fatha.m4a">ج</div>
 
-    <div class="letter-box" data-sound="sounds/ha.m4a" onclick="location.href='hakiyan.html'">ح</div>
+    <div class="letter-box" data-sound="sounds/ha_fatha.m4a">ح</div>
 
-    <div class="letter-box" data-sound="sounds/kha.m4a" onclick="location.href='khakiyan.html'">خ</div>
+    <div class="letter-box" data-sound="sounds/kha_fatha.m4a">خ</div>
 
 </div>
 
 <script>
     // Lecture du son au clic
-    const letters = document.querySelectorAll('.letter-box');
-
-    letters.forEach(letter => {
+    document.querySelectorAll('.letter-box').forEach(letter => {
         letter.addEventListener('click', () => {
             const audioSrc = letter.getAttribute('data-sound');
             const audio = new Audio(audioSrc);
@@ -86,4 +84,5 @@
 
 </body>
 </html>
+
 
