@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page Nour Hafssa Kenza</title>
+
+<style>
+/* ----- STYLE GÉNÉRAL ----- */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fffbf0;
+    margin: 0;
+    text-align: center;
+}
+
+h1 {
+    color: #1a237e;
+    margin-top: 30px;
+}
+
+/* ----- BLOCS DOSSIERS ----- */
+.blocks {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    margin-top: 50px;
+}
+
+.block {
+    width: 250px;
+    height: 150px;
+    background-color: #5c6bc0; /* bleu comme page2 */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    font-size: 22px;
+    text-align: center;
+    padding: 20px;
+}
+
+.block:hover {
+    transform: scale(1.05);
+    background-color: #7986cb; /* bleu clair au hover */
+}
+
+.block-name {
+    font-size: 18px;
+    margin-top: 8px;
+    color: #fff;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Bienvenue sur la page de Nour, Hafssa & Kenza</h1>
+
+<div class="blocks">
+    <div class="block" onclick="window.location.href='travailnourhafssakenza.html'">
+        Travail à faire
+        <div class="block-name">Travail</div>
+    </div>
+
+    <div class="block" onclick="window.location.href='leconsnourhafssakenza.html'">
+        Mes leçons
+        <div class="block-name">Leçons</div>
+    </div>
+
+    <div class="block" onclick="window.location.href='jeuxnourhafssakenza.html'">
+        Mes jeux
+        <div class="block-name">Jeux</div>
+    </div>
+</div>
+
+</body>
+</html>
+
+
+
+
