@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeu de Vocabulaire – Niveau 3</title>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #fff7e6;
+        text-align: center;
+        padding: 20px;
+    }
+
+    h1 {
+        color: #1a237e;
+    }
+
+    .question {
+        background: #e3e8ff;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 15px;
+        width: 90%;
+        max-width: 600px;
+    }
+
+    .word {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 15px;
+    }
+
+    .option {
+        background: #5c6bc0;
+        color: white;
+        padding: 12px;
+        margin: 8px;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.3s;
+        font-size: 22px;
+        direction: rtl;
+    }
+
+    .option:hover {
+        background: #7986cb;
+    }
+
+    .correct {
+        background: #4caf50 !important;
+    }
+
+    .wrong {
+        background: #e53935 !important;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>Jeu de Vocabulaire – Niveau 3</h1>
+
+<div id="game"></div>
+
+<script>
+const questions = [
+    { fr: "Pain", correct: "خُبْز", wrong: ["ماء", "تفاح"] },
+    { fr: "Cuisinier", correct: "طَبَّاخ", wrong: ["مُدَرِّس", "مُمَرِّض"] },
+    { fr: "Livre", correct: "كِتَاب", wrong: ["قَلَم", "باب"] },
+    { fr: "Papa", correct: "بابا", wrong: ["أَب", "خَال"] },
+    { fr: "Maman", correct: "ماما", wrong: ["أُمّ", "جَدَّة"] },
+    { fr: "Docteur / Médecin", correct: "طَبِيب", wrong: ["مُهَنْدِس", "طَيَّار"] },
+    { fr: "Professeur (Ousted)", correct: "أُسْتَاذ", wrong: ["طَالِب", "جَار"] },
+    { fr: "Sucre", correct: "سُكَّر", wrong: ["مِلْح", "شَاي"] },
+    { fr: "Prière", correct: "صَلَاة", wrong: ["مَسْجِد", "وُضُوء"] },
+    { fr: "Rêve", correct: "حُلْم", wrong: ["نَوْم", "قَلْب"] },
+    { fr: "Patience", correct: "حِلْم", wrong: ["صَبْر", "غَضَب"] }
+];
+
+// Mélange un tableau
+function shuffle(array) {
+    return array.sort(() => Math.random() - 0.5);
+}
+
+const gameContainer = document.getElementById("game");
+
+// Construction du jeu
+questions.forEach((q, index) => {
+    const box = document.createElement("div");
+    box.className = "question";
+
+    box.innerHTML = `
+        <div class="word">${index + 1}. ${q.fr}</div>
+    `;
+
+    // Mélange des choix
+    const options = shuffle([q.correct, ...q.wrong]);
+
+    options.forEach(option => {
+        const btn = document.createElement("div");
+        btn.className = "option";
+        btn.textContent = option;
+
+        btn.onclick = () => {
+            if (option === q.correct) {
+                btn.classList.add("correct");
+            } else {
+                btn.classList.add("wrong");
+            }
+        };
+
+        box.appendChild(btn);
+    });
+
+    gameContainer.appendChild(box);
+});
+</script>
+
+</body>
+</html>
+
+
+
